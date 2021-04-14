@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.parndt.Timetable">
+    package="de.parndt.timetable">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,10 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Timetable"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:name="de.parndt.Timetable.TimetableApplication"
+        android:name="de.parndt.timetable.TimetableApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="de.parndt.Timetable.ui.MainActivity">
+        <activity android:name="de.parndt.timetable.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
