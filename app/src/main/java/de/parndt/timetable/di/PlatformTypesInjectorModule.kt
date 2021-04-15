@@ -2,8 +2,10 @@ package de.parndt.timetable.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import de.parndt.timetable.start.di.StartFragmentModule
-import de.parndt.timetable.start.ui.StartFragment
+import de.parndt.timetable.start.init.di.InitFragmentModule
+import de.parndt.timetable.start.init.ui.InitFragment
+import de.parndt.timetable.start.simple.di.StartFragmentModule
+import de.parndt.timetable.start.simple.ui.StartFragment
 import de.parndt.timetable.timetable.di.TimetableFragmentModule
 import de.parndt.timetable.timetable.ui.TimetableFragment
 import de.parndt.timetable.ui.MainActivity
@@ -22,5 +24,7 @@ abstract class PlatformTypesInjectorModule {
     @ContributesAndroidInjector(modules = [StartFragmentModule::class])
     abstract fun contributeStartFragment(): StartFragment
 
+    @ContributesAndroidInjector(modules = [InitFragmentModule::class])
+    abstract fun contributeInitFragment(): InitFragment
 }
 

@@ -1,8 +1,9 @@
 package de.parndt.timetable.timetable
 
+import de.parndt.timetable.database.models.LectureEntity
+import de.parndt.timetable.database.repository.LectureRepository
 import de.parndt.timetable.general.Config
-import de.parndt.timetable.general.TimetableParser
-import de.parndt.timetable.general.lecture.Lecture
+import de.parndt.timetable.general.loader.TimetableLoader
 import de.parndt.timetable.general.lecture.LectureDay
 import java.time.LocalDate
 import java.time.ZoneId
@@ -11,28 +12,32 @@ import javax.inject.Singleton
 
 @Singleton
 class TimetableUseCase @Inject constructor(
-    private val timetableParser: TimetableParser,
-    private val config: Config
+    private val timetableLoader: TimetableLoader,
+    private val lectureRepository: LectureRepository
 ) {
 
-    fun getLectures(): List<LectureDay> {
-        val listLectureDay: MutableList<LectureDay> = mutableListOf()
-        val lectures = timetableParser.getLectures() ?: listOf()
-
-        val courseSpecificLectures = lecturesFromCourse(lectures, config.getCourse())
-
-        val lecturesGroupedByDate = courseSpecificLectures.groupBy { it.date }.toSortedMap()
-
-        lecturesGroupedByDate.forEach { (date, lectureDay) ->
-            listLectureDay.add(LectureDay(date, lectureDay))
+    suspend fun getLectures(): List<LectureDay> {
+        val lectures: List<LectureEntity> = if (lecturesInDatabase()) {
+            loadLecturesFromDatabase()
+        } else {
+            timetableLoader.loadAndSaveLectures() ?: listOf()
         }
-        return listLectureDay
+
+        return lectures
+            .groupBy { it.date }
+            .map { (date, lectureDay) ->
+                LectureDay(date, lectureDay)
+            }.sortedBy {
+                it.getDateValue()
+            }
     }
 
-    fun lecturesFromCourse(lectures: List<Lecture>, course: String): List<Lecture> {
-        return lectures.filter { lecture ->
-            lecture.course.contains(course)
-        }
+    private fun lecturesInDatabase(): Boolean {
+        return !lectureRepository.isTableEmpty()
+    }
+
+    private fun loadLecturesFromDatabase(): List<LectureEntity> {
+        return lectureRepository.getAllLectures()
     }
 
     fun getCurrentDate(): LocalDate {

@@ -2,6 +2,7 @@ package de.parndt.timetable.general
 
 import android.content.SharedPreferences
 import de.parndt.timetable.BuildConfig
+import de.parndt.timetable.database.models.CourseEntity
 import de.parndt.timetable.utils.Logger
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,20 +12,24 @@ import javax.inject.Singleton
 class Config @Inject constructor(private val sharedPreferences: SharedPreferences) {
 
     private val COURSE_NAME = "COURSE"
+    private val COURSE_URL = "COURSE_URL"
     private val VERSION_CODE = "VERSION_CODE"
     private val DOESNT_EXIST = -1
     private val currentVersionCode = BuildConfig.VERSION_CODE
 
 
-    fun setCourse(course: String) {
+    fun setCourse(course: CourseEntity) {
         with(sharedPreferences.edit()) {
-            putString(COURSE_NAME, course)
+            putString(COURSE_NAME, course.name)
+            putString(COURSE_URL, course.csvUrl)
             apply()
         }
     }
 
-    fun getCourse(): String {
-        return sharedPreferences.getString(COURSE_NAME, "") ?: ""
+    fun getCourse(): CourseEntity {
+        val courseName = sharedPreferences.getString(COURSE_NAME, "") ?: ""
+        val courseUrl = sharedPreferences.getString(COURSE_URL, "") ?: ""
+        return CourseEntity(courseName, courseUrl)
     }
 
     private fun setVersionCodeToCurrent() {
@@ -34,31 +39,31 @@ class Config @Inject constructor(private val sharedPreferences: SharedPreference
         }
     }
 
-    fun isFirstRun(): Run {
+    fun isFirstRun(): RunType {
         val savedVersionCode = sharedPreferences.getInt(VERSION_CODE, DOESNT_EXIST)
         val typeOfStart = when {
             currentVersionCode == savedVersionCode -> {
-                Run.NORMAL
+                RunType.NORMAL
             }
             savedVersionCode == DOESNT_EXIST -> {
-                Run.FIRST_START
+                RunType.FIRST_START
             }
             currentVersionCode > savedVersionCode -> {
-                Run.UPGRADE
+                RunType.UPGRADE
             }
             else -> {
                 Logger.error("Well something went wrong on checking the first start")
-                Run.NORMAL
+                RunType.NORMAL
             }
         }
 
-        setVersionCodeToCurrent()
+        //setVersionCodeToCurrent()
         return typeOfStart
     }
 
 }
 
-enum class Run {
+enum class RunType {
     FIRST_START,
     UPGRADE,
     NORMAL

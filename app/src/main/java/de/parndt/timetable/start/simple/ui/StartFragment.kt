@@ -1,4 +1,4 @@
-package de.parndt.timetable.start.ui
+package de.parndt.timetable.start.simple.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import de.parndt.timetable.R
 import de.parndt.timetable.timetable.ui.TimetableFragment
@@ -38,17 +37,18 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewModel.getCourses().observe(viewLifecycleOwner) {
+        viewModel.getCourseNames().observe(viewLifecycleOwner) {
+
             adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 it
             )
+
             startCourseList.adapter = adapter
-            hideLoadingShowStart()
         }
 
-        viewModel.loadCourseList()
+        viewModel.loadCourseNames()
 
         onItemSelected()
         setOnClickNext()
@@ -64,10 +64,12 @@ class StartFragment : Fragment() {
             ) {
                 val courseName = parent?.getItemAtPosition(position).toString()
                 if (courseName.isNotEmpty()) {
-                    viewModel.setCourse(courseName)
-                    enableNextButton()
+                    viewModel.setCourse(courseName) {
+                        requireActivity().runOnUiThread {
+                            enableNextButton()
+                        }
+                    }
                 } else {
-                    viewModel.setCourse("")
                     disableNextButton()
                 }
             }
@@ -92,8 +94,4 @@ class StartFragment : Fragment() {
         startNextButton.isEnabled = false
     }
 
-    private fun hideLoadingShowStart() {
-        startLoadingIndicator.visibility = View.GONE
-        startLayout.visibility = View.VISIBLE
-    }
 }

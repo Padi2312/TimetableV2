@@ -1,10 +1,10 @@
-package de.parndt.timetable.start.di
+package de.parndt.timetable.start.simple.di
 
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
-import de.parndt.timetable.start.ui.StartFragment
-import de.parndt.timetable.start.ui.StartViewModel
+import de.parndt.timetable.start.simple.ui.StartFragment
+import de.parndt.timetable.start.simple.ui.StartViewModel
 
 
 @Module

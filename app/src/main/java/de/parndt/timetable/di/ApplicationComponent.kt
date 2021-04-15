@@ -7,6 +7,8 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import de.parndt.timetable.TimetableApplication
+import de.parndt.timetable.database.di.RepositoryModule
+import de.parndt.timetable.database.di.RoomDatabaseModule
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -14,6 +16,8 @@ import javax.inject.Singleton
     AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class,
     PlatformTypesInjectorModule::class,
+    RepositoryModule::class,
+    RoomDatabaseModule::class,
     MainActivityModule::class,
     SharedPrefsModule::class,
     NetworkModule::class
@@ -30,6 +34,8 @@ interface ApplicationComponent:AndroidInjector<TimetableApplication> {
 
         @BindsInstance
         fun networkModule(@Named("baseUrl")baseUrl:String):Builder
+
+        fun roomDatabaseModule(roomDatabaseModule: RoomDatabaseModule):Builder
 
         fun build():ApplicationComponent
     }

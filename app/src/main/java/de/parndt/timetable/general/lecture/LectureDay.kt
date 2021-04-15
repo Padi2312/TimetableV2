@@ -1,18 +1,19 @@
 package de.parndt.timetable.general.lecture
 
+import de.parndt.timetable.database.models.LectureEntity
 import de.parndt.timetable.utils.Utils
 import java.time.LocalDate
 import java.util.*
 
 
-class LectureDay(val id: String, private val date: String, val lecturesList: List<Lecture>) {
+class LectureDay(val id: String, private val date: String, val lecturesList: List<LectureEntity>) {
 
     var Date = date
         get() {
             return parseDateToString(getDateValue())
         }
 
-    constructor(date: String, lecturesList: List<Lecture>) : this(
+    constructor(date: String, lecturesList: List<LectureEntity>) : this(
         UUID.randomUUID().toString(),
         date,
         lecturesList
