@@ -1,15 +1,10 @@
 /*
- * *
- *  * Created by Patrick Arndt on 29.10.20 19:49
- *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 29.10.20 19:46
- *
+ * Copyright (c) 2021 Patrick Arndt
  */
 
 package de.parndt.timetable.database.persistence
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import de.parndt.timetable.database.models.LectureEntity

@@ -1,10 +1,13 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.database.persistence
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import de.parndt.timetable.database.models.CourseEntity
-import de.parndt.timetable.database.models.LectureEntity
 
 @Dao
 interface CourseDao {

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.timetable.ui
 
 import android.content.Context
@@ -11,7 +15,6 @@ import de.parndt.timetable.R
 import de.parndt.timetable.general.lecture.LectureDay
 import de.parndt.timetable.utils.Utils
 import kotlinx.android.synthetic.main.list_item_daily_lecture.view.*
-import java.time.LocalDate
 
 open class TimetableViewHolder(view: View, private val context: Context) :
     RecyclerView.ViewHolder(view) {

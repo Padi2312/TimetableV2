@@ -1,10 +1,13 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.start.simple.ui
 
 import androidx.lifecycle.*
 import de.parndt.timetable.general.Config
 import de.parndt.timetable.start.simple.StartUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

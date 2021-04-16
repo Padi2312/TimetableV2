@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.start.init.ui
 
 import android.content.Context
@@ -9,9 +13,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.android.support.AndroidSupportInjection
 import de.parndt.timetable.R
-import de.parndt.timetable.general.RunType.NORMAL
-import de.parndt.timetable.general.RunType.UPGRADE
-import de.parndt.timetable.general.RunType.FIRST_START
+import de.parndt.timetable.general.RunType.*
 import de.parndt.timetable.start.init.EInitState
 import de.parndt.timetable.start.simple.ui.StartFragment
 import de.parndt.timetable.timetable.ui.TimetableFragment

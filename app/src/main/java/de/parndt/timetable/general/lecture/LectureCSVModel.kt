@@ -1,7 +1,10 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.general.lecture
 
 import com.opencsv.bean.CsvBindByName
-import java.util.*
 
 class LectureCSVModel {
     @CsvBindByName(column = "Datum")

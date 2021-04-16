@@ -1,9 +1,5 @@
 /*
- * *
- *  * Created by Patrick Arndt on 29.10.20 19:49
- *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 29.10.20 19:45
- *
+ * Copyright (c) 2021 Patrick Arndt
  */
 
 package de.parndt.timetable.database.di
@@ -11,8 +7,8 @@ package de.parndt.timetable.database.di
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import de.parndt.timetable.database.TimetableDatabase
 import de.parndt.timetable.TimetableApplication
+import de.parndt.timetable.database.TimetableDatabase
 import javax.inject.Singleton
 
 
