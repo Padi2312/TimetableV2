@@ -1,7 +1,10 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.timetable
 
 import de.parndt.timetable.database.models.LectureEntity
-import de.parndt.timetable.database.repository.LectureRepository
 import de.parndt.timetable.general.lecture.LectureDay
 import de.parndt.timetable.general.loader.TimetableLoader
 import java.time.LocalDate
@@ -11,16 +14,11 @@ import javax.inject.Singleton
 
 @Singleton
 class TimetableUseCase @Inject constructor(
-    private val timetableLoader: TimetableLoader,
-    private val lectureRepository: LectureRepository
+    private val timetableLoader: TimetableLoader
 ) {
 
     suspend fun getLectures(): List<LectureDay> {
-        val lectures: List<LectureEntity> = if (lecturesInDatabase()) {
-            loadLecturesFromDatabase()
-        } else {
-            timetableLoader.loadAndSaveLectures()
-        }
+        val lectures: List<LectureEntity> = timetableLoader.loadAndSaveLectures()
 
         return lectures
             .groupBy { it.date }
@@ -40,14 +38,6 @@ class TimetableUseCase @Inject constructor(
             }.sortedBy {
                 it.getDateValue()
             }
-    }
-
-    private fun lecturesInDatabase(): Boolean {
-        return !lectureRepository.isTableEmpty()
-    }
-
-    private fun loadLecturesFromDatabase(): List<LectureEntity> {
-        return lectureRepository.getAllLectures()
     }
 
     fun getCurrentDate(): LocalDate {

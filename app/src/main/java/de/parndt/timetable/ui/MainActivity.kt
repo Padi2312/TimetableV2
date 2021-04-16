@@ -26,11 +26,9 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
-
     private fun init() {
         navigateToFragment(InitFragment())
     }
-
 
     /**
      * Navigates to a fragment
