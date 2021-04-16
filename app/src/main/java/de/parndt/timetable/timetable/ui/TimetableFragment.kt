@@ -2,7 +2,6 @@ package de.parndt.timetable.timetable.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.TimingLogger
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.AndroidSupportInjection
 import de.parndt.timetable.R
-import de.parndt.timetable.general.loader.TimetableLoader
-import de.parndt.timetable.utils.Logger
+import de.parndt.timetable.general.lecture.LectureDay
 import kotlinx.android.synthetic.main.fragment_timetable.*
 import javax.inject.Inject
-import kotlin.math.pow
-import kotlin.system.measureTimeMillis
-import kotlin.time.ExperimentalTime
-import kotlin.time.measureTime
 
 class TimetableFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: TimetableViewModel
     private lateinit var adapter: TimetableListAdapter
-
-    private var startTime = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +32,6 @@ class TimetableFragment : Fragment() {
         super.onAttach(context)
     }
 
-    @ExperimentalTime
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,21 +42,33 @@ class TimetableFragment : Fragment() {
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
         viewModel.getLectures().observe(viewLifecycleOwner) {
-            val timenow = System.nanoTime()
-            Logger.info("Time elapsed: ${(timenow-startTime)/10.toFloat().pow(6) } ms")
-
-            hideLoadingIndicator()
-            adapter.submitList(it)
-            scrollToCurrentDay()
-
+            showLectures(it)
         }
-        startTime = System.nanoTime()
+
+        timetableRefreshLayout.setOnRefreshListener {
+            refresh()
+        }
+
         viewModel.loadLectures()
-
-
     }
 
-    private fun hideLoadingIndicator() {
+    private fun showLectures(lectures: List<LectureDay>) {
+        hideLoadingIndicators()
+        adapter.submitList(lectures)
+        scrollToCurrentDay()
+    }
+
+    private fun refresh() {
+        showLoadingIndicator()
+        viewModel.refreshLectures()
+    }
+
+    private fun showLoadingIndicator() {
+        timetableLoadingIndicator.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingIndicators() {
+        timetableRefreshLayout.isRefreshing = false
         timetableLoadingIndicator.visibility = View.GONE
     }
 

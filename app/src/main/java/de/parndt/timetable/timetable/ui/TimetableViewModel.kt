@@ -25,6 +25,12 @@ class TimetableViewModel @Inject constructor(
         return useCase.getCurrentDate()
     }
 
+    fun refreshLectures() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _lectures.postValue(useCase.refreshLectures())
+        }
+    }
+
     class Factory @Inject constructor(
         private val useCase: TimetableUseCase
     ) : ViewModelProvider.Factory {

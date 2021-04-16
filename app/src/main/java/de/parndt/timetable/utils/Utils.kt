@@ -2,6 +2,7 @@ package de.parndt.timetable.utils
 
 import okhttp3.Request
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object Utils {
@@ -16,6 +17,10 @@ object Utils {
 
     fun dateNow(): LocalDate {
         return LocalDate.now()
+    }
+
+    fun dateTimeNow(): LocalDateTime {
+        return LocalDateTime.now()
     }
 
 }

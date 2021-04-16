@@ -9,9 +9,6 @@ import de.parndt.timetable.general.Config
 import de.parndt.timetable.general.lecture.LectureCSVModel
 import de.parndt.timetable.utils.Logger
 import de.parndt.timetable.utils.Utils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import org.jsoup.Jsoup
 import javax.inject.Inject
@@ -24,14 +21,8 @@ class TimetableLoader @Inject constructor(
     private val lectureRepository: LectureRepository,
     private val courseRepository: CourseRepository
 ) {
-
-    var courseModelList: List<CourseEntity> = listOf()
-    var lectureModelList: List<LectureEntity> = listOf()
-    val raplaCSVLink =
-        "https://rapla.dhbw.de/rapla/calendar.csv?key=BX2MrCsUIl-Bm8MTaxjslJ5wzIryM3bkwiDCe4PaYyfZXI0yz1sCIhXdyNtXoZmA4dkOgdRA7EzUF6DPupMNP-fIrgQkDVd99rZKEbgqKhajWy7WGDsHbMqAunKlxm8EGryjvwt1kpad5g93Dkdn0A&salt=-668364712&allocatable_id="
     val raplaLink =
         "https://rapla.dhbw.de/rapla/calendar?key=BX2MrCsUIl-Bm8MTaxjslJ5wzIryM3bkwiDCe4PaYyfZXI0yz1sCIhXdyNtXoZmA4dkOgdRA7EzUF6DPupMNP-fIrgQkDVd99rZKEbgqKhajWy7WGDsHbMqAunKlxm8EGryjvwt1kpad5g93Dkdn0A&salt=-668364712"
-
 
     private fun loadTimetable(): List<LectureCSVModel>? {
         val csvURL = config.getCourse().csvUrl
@@ -53,29 +44,21 @@ class TimetableLoader @Inject constructor(
         }
     }
 
-    suspend fun loadAndSaveLectures(): List<LectureEntity>? {
-        lectureModelList = lectureRepository.getAllLectures()
-        return if (lectureModelList.isNotEmpty()) {
+    suspend fun loadAndSaveLectures(forceReload: Boolean = false): List<LectureEntity> {
+        var lectureModelList = lectureRepository.getAllLectures().toList()
+
+        return if (lectureModelList.isNotEmpty() && !forceReload) {
             lectureModelList
         } else {
-            val timetable = loadTimetable() ?: return null
-            val lectureList = timetable.map { lecture ->
-                LectureEntity(
-                    lecture.name ?: "",
-                    lecture.date ?: "",
-                    lecture.times ?: "",
-                    lecture.course ?: "",
-                    lecture.room ?: ""
-                )
-            }
-            lectureModelList = lectureList
-            lectureRepository.insertLecture(lectureModelList)
+            lectureModelList = getLecturesList()
+            saveLectures(lectureModelList, forceReload)
+            config.setLastUpdated(Utils.dateTimeNow().toString())
             lectureModelList
         }
     }
 
     suspend fun loadAndSaveCourses(): List<CourseEntity> {
-        courseModelList = courseRepository.getAllCourses()
+        var courseModelList = courseRepository.getAllCourses()
         return if (courseModelList.isNotEmpty())
             courseModelList
         else {
@@ -96,4 +79,35 @@ class TimetableLoader @Inject constructor(
             courseModelList
         }
     }
+
+    private suspend fun saveLectures(
+        lectureList: List<LectureEntity>,
+        forceReload: Boolean = false
+    ) {
+        if (forceReload) {
+            lectureRepository.deleteAllLectures()
+            lectureRepository.insertLecture(lectureList)
+        } else {
+            lectureRepository.insertLecture(lectureList)
+        }
+    }
+
+    /**
+     * Load the lectures and map the LectureCSVModel-List to LectureEntity-List
+     * @return List of LectureEntitys
+     */
+    private fun getLecturesList(): List<LectureEntity> {
+        val timetable = loadTimetable() ?: return listOf()
+        return timetable.map { lecture ->
+            LectureEntity(
+                lecture.name ?: "",
+                lecture.date ?: "",
+                lecture.times ?: "",
+                lecture.course ?: "",
+                lecture.room ?: ""
+            )
+        }
+    }
+
+
 }

@@ -2,9 +2,8 @@ package de.parndt.timetable.timetable
 
 import de.parndt.timetable.database.models.LectureEntity
 import de.parndt.timetable.database.repository.LectureRepository
-import de.parndt.timetable.general.Config
-import de.parndt.timetable.general.loader.TimetableLoader
 import de.parndt.timetable.general.lecture.LectureDay
+import de.parndt.timetable.general.loader.TimetableLoader
 import java.time.LocalDate
 import java.time.ZoneId
 import javax.inject.Inject
@@ -20,9 +19,20 @@ class TimetableUseCase @Inject constructor(
         val lectures: List<LectureEntity> = if (lecturesInDatabase()) {
             loadLecturesFromDatabase()
         } else {
-            timetableLoader.loadAndSaveLectures() ?: listOf()
+            timetableLoader.loadAndSaveLectures()
         }
 
+        return lectures
+            .groupBy { it.date }
+            .map { (date, lectureDay) ->
+                LectureDay(date, lectureDay)
+            }.sortedBy {
+                it.getDateValue()
+            }
+    }
+
+    suspend fun refreshLectures(): List<LectureDay> {
+        val lectures = timetableLoader.loadAndSaveLectures(true)
         return lectures
             .groupBy { it.date }
             .map { (date, lectureDay) ->

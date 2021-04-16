@@ -53,7 +53,7 @@ class InitViewModel @Inject constructor(
 
     fun loadLectures() {
         GlobalScope.launch(Dispatchers.IO) {
-            initUseCase.loadAndSaveCourseLectures()
+            initUseCase.loadAndSaveLectures()
             initState.postValue(EInitState.DEFAULT_INIT)
         }
     }

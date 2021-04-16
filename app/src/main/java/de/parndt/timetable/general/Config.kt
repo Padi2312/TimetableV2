@@ -14,8 +14,21 @@ class Config @Inject constructor(private val sharedPreferences: SharedPreference
     private val COURSE_NAME = "COURSE"
     private val COURSE_URL = "COURSE_URL"
     private val VERSION_CODE = "VERSION_CODE"
+    private val LAST_UPDATED = "LAST_UPDATED"
     private val DOESNT_EXIST = -1
     private val currentVersionCode = BuildConfig.VERSION_CODE
+
+
+    fun setLastUpdated(date: String) {
+        with(sharedPreferences.edit()) {
+            putString(LAST_UPDATED,date)
+            apply()
+        }
+    }
+
+    fun getLastUpdated(): String {
+        return sharedPreferences.getString(LAST_UPDATED, "") ?: ""
+    }
 
 
     fun setCourse(course: CourseEntity) {
@@ -57,7 +70,7 @@ class Config @Inject constructor(private val sharedPreferences: SharedPreference
             }
         }
 
-        //setVersionCodeToCurrent()
+        setVersionCodeToCurrent()
         return typeOfStart
     }
 
