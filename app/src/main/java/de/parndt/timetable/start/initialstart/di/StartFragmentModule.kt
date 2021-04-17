@@ -1,10 +1,14 @@
-package de.parndt.timetable.start.simple.di
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
+package de.parndt.timetable.start.initialstart.di
 
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
-import de.parndt.timetable.start.simple.ui.StartFragment
-import de.parndt.timetable.start.simple.ui.StartViewModel
+import de.parndt.timetable.start.initialstart.ui.StartFragment
+import de.parndt.timetable.start.initialstart.ui.StartViewModel
 
 
 @Module

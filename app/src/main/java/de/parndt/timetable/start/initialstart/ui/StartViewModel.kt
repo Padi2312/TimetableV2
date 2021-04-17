@@ -2,11 +2,11 @@
  * Copyright (c) 2021 Patrick Arndt
  */
 
-package de.parndt.timetable.start.simple.ui
+package de.parndt.timetable.start.initialstart.ui
 
 import androidx.lifecycle.*
 import de.parndt.timetable.general.Config
-import de.parndt.timetable.start.simple.StartUseCase
+import de.parndt.timetable.start.initialstart.StartUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,8 +31,8 @@ class StartViewModel @Inject constructor(
 
     fun setCourse(course: String, callback: (() -> Unit)) {
         viewModelScope.launch(Dispatchers.IO) {
-            val course = startUseCase.getCourseByName(course)
-            config.setCourse(course)
+            val courseResult = startUseCase.getCourseByName(course)
+            config.setCourse(courseResult)
             callback.invoke()
         }
     }

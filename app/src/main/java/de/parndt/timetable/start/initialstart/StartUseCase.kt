@@ -2,7 +2,7 @@
  * Copyright (c) 2021 Patrick Arndt
  */
 
-package de.parndt.timetable.start.simple
+package de.parndt.timetable.start.initialstart
 
 import de.parndt.timetable.database.models.CourseEntity
 import de.parndt.timetable.database.repository.CourseRepository

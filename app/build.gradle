@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -12,8 +16,8 @@ android {
         applicationId "de.parndt.timetable"
         minSdkVersion 26
         targetSdkVersion 29
-        versionCode 31
-        versionName "3.1"
+        versionCode 20
+        versionName "2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
