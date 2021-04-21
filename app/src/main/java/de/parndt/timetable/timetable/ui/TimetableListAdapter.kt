@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.timetable.ui
 
 import android.content.Context
@@ -11,7 +15,7 @@ import java.time.LocalDate
 
 
 class TimetableListAdapter(val _context: Context) :
-    ListAdapter<LectureDay, TimetableViewHolder>(LecturesListDiffCallback) {
+    ListAdapter<LectureDay, TimetableViewHolder>(LecturesDayListDiffCallback) {
 
 
     override fun getItemCount(): Int {
@@ -35,7 +39,7 @@ class TimetableListAdapter(val _context: Context) :
     }
 }
 
-object LecturesListDiffCallback : DiffUtil.ItemCallback<LectureDay>() {
+object LecturesDayListDiffCallback : DiffUtil.ItemCallback<LectureDay>() {
     override fun areItemsTheSame(oldItem: LectureDay, newItem: LectureDay): Boolean {
         return oldItem.id == newItem.id
     }

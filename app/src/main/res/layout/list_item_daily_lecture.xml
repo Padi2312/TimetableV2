@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021 Patrick Arndt
+  -->
+
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dailyLecturesView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardElevation="4dp"
-    android:clipToPadding="false"
     android:clipChildren="false"
-    app:strokeColor="@color/primaryColor"
+    android:clipToPadding="false"
+    app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    app:strokeColor="#C62828">
 
 
     <LinearLayout
@@ -20,14 +24,13 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-
         <TextView
             android:id="@+id/defaultLectureDate"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="2dp"
             android:text="12.02.2021"
-            android:gravity="center"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textSize="16sp" />
 
@@ -41,10 +44,10 @@
 
     <View
         android:id="@+id/defaultLectureOverlay"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#94818181" />
+        android:background="#94818181"
+        android:visibility="gone" />
 
 </com.google.android.material.card.MaterialCardView>
 

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.general.lecture
 
 import de.parndt.timetable.database.models.LectureEntity
@@ -26,6 +30,7 @@ class LectureDay(val id: String, private val date: String, val lecturesList: Lis
     open fun getDateValue(): LocalDate {
         return LocalDate.parse(date, Utils.dateFormater("yyyy-MM-dd HH:mm:ss"))
     }
+
 }
 
 
