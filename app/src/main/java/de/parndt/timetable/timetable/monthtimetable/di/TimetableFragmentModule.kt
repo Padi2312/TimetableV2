@@ -1,10 +1,14 @@
-package de.parndt.timetable.timetable.di
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
+package de.parndt.timetable.timetable.monthtimetable.di
 
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
-import de.parndt.timetable.timetable.ui.TimetableFragment
-import de.parndt.timetable.timetable.ui.TimetableViewModel
+import de.parndt.timetable.timetable.monthtimetable.ui.TimetableFragment
+import de.parndt.timetable.timetable.monthtimetable.ui.TimetableViewModel
 
 
 

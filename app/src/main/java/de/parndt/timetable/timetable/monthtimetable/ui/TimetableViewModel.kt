@@ -1,8 +1,12 @@
-package de.parndt.timetable.timetable.ui
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
+package de.parndt.timetable.timetable.monthtimetable.ui
 
 import androidx.lifecycle.*
 import de.parndt.timetable.general.lecture.LectureDay
-import de.parndt.timetable.timetable.TimetableUseCase
+import de.parndt.timetable.timetable.monthtimetable.TimetableUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate

@@ -1,4 +1,8 @@
-package de.parndt.timetable.timetable
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
+package de.parndt.timetable.timetable.monthtimetable
 
 import de.parndt.timetable.database.models.LectureEntity
 import de.parndt.timetable.database.repository.LectureRepository
@@ -48,6 +52,11 @@ class TimetableUseCase @Inject constructor(
 
     private fun loadLecturesFromDatabase(): List<LectureEntity> {
         return lectureRepository.getAllLectures()
+    }
+
+    suspend fun getTodayLectures() {
+        val lectures = getLectures()
+        lectures.find { it.getDateValue() == getCurrentDate() }
     }
 
     fun getCurrentDate(): LocalDate {

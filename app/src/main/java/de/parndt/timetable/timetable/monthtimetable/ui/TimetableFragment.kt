@@ -1,4 +1,8 @@
-package de.parndt.timetable.timetable.ui
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
+package de.parndt.timetable.timetable.monthtimetable.ui
 
 import android.content.Context
 import android.os.Bundle

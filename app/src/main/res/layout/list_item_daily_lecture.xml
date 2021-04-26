@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2021 Patrick Arndt
   -->
 
@@ -11,11 +10,12 @@
     android:layout_margin="4dp"
     android:clipChildren="false"
     android:clipToPadding="false"
-    app:cardElevation="4dp"
+    android:elevation="8dp"
+    app:cardElevation="8dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:strokeColor="#C62828">
+    app:strokeColor="@android:color/holo_purple">
 
 
     <LinearLayout

@@ -59,12 +59,12 @@ class LectureEntity(name: String, date: String, time: String, course: String, ro
         } else {
             val minutesOfLectures =
                 ChronoUnit.MINUTES.between(startEndTime.first, startEndTime.second)
-            val minutesPassed = ChronoUnit.MINUTES.between(currentDate, startEndTime.second)
+            val minutesPassed = ChronoUnit.MINUTES.between(startEndTime.first,currentDate)
 
             if (minutesPassed < 0 || minutesPassed == minutesOfLectures) {
                 return 100
             } else {
-                return ((minutesOfLectures / 100) * minutesPassed).toInt()
+                return  ((100f / minutesOfLectures ) * minutesPassed).toInt()
             }
         }
     }

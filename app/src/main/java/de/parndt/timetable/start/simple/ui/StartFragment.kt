@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.start.simple.ui
 
 import android.content.Context
@@ -10,7 +14,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import dagger.android.support.AndroidSupportInjection
 import de.parndt.timetable.R
-import de.parndt.timetable.timetable.ui.TimetableFragment
+import de.parndt.timetable.timetable.monthtimetable.ui.TimetableFragment
 import de.parndt.timetable.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_start.*
 import javax.inject.Inject
