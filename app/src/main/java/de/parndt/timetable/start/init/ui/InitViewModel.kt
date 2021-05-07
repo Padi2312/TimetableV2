@@ -36,8 +36,18 @@ class InitViewModel @Inject constructor(
      *
      */
     fun getAppRunType(): RunType {
-        return config.isFirstRun()
+        return config.getAppRunType()
     }
+
+    /**
+     * If init gets canceled the app should start init process on the next start
+     * The version code gets deleted in shared prefs,
+     * that the init process starts again
+     */
+    fun cancelInit() {
+        config.resetFirstRunModifications()
+    }
+
 
     /**
      * Check if network connection is available. If N/A the app is going to be closed

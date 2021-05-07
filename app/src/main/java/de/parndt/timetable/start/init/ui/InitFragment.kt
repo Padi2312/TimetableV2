@@ -72,9 +72,14 @@ class InitFragment : Fragment() {
 
     private fun noNetworkConnection() {
         MaterialAlertDialogBuilder(requireContext())
+            .setCancelable(false)
             .setTitle("Keine Internet-Verbindung")
-            .setMessage("Für den ersten Start wird eine Internet-Verbindung benötigt. Bitte Versuchen sie es erneut. Die App wird nun geschlossen. ")
+            .setMessage("Für den ersten Start wird eine Internet-Verbindung benötigt. Stellen sie diese bitte her und versuchen sie es erneut. Die App wird nun geschlossen. ")
             .setNeutralButton(resources.getString(android.R.string.ok)) { _, _ ->
+                requireActivity().finish()
+            }
+            .setOnDismissListener {
+                viewModel.cancelInit()
                 requireActivity().finish()
             }
             .show()

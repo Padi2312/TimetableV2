@@ -49,14 +49,22 @@ class Config @Inject constructor(private val sharedPreferences: SharedPreference
         return CourseEntity(courseName, courseUrl)
     }
 
+    fun resetFirstRunModifications(){
+        setVersionCode(DOESNT_EXIST)
+    }
+
     private fun setVersionCodeToCurrent() {
+        setVersionCode(currentVersionCode)
+    }
+
+    private fun setVersionCode(versionCode:Int){
         with(sharedPreferences.edit()) {
-            putInt(VERSION_CODE, currentVersionCode)
+            putInt(VERSION_CODE, versionCode)
             commit()
         }
     }
 
-    fun isFirstRun(): RunType {
+    fun getAppRunType(): RunType {
         val savedVersionCode = sharedPreferences.getInt(VERSION_CODE, DOESNT_EXIST)
         val typeOfStart = when {
             currentVersionCode == savedVersionCode -> {

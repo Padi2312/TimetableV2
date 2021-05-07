@@ -46,6 +46,9 @@ class DayTimetableFragment : Fragment() {
                 adapter.submitList(it.lecturesList)
                 dayDate.text = it.Date
             }
+            else{
+                labelNoLectures.visibility = View.VISIBLE
+            }
 
         }
 
