@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import de.parndt.timetable.R
-import de.parndt.timetable.general.lecture.LectureDay
+import de.parndt.timetable.general.LectureDay
 import java.time.LocalDate
 
 

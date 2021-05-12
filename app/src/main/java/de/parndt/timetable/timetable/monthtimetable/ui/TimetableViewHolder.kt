@@ -15,7 +15,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import de.parndt.timetable.R
-import de.parndt.timetable.general.lecture.LectureDay
+import de.parndt.timetable.general.LectureDay
 import de.parndt.timetable.utils.Utils
 import kotlinx.android.synthetic.main.list_item_daily_lecture.view.*
 

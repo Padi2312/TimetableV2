@@ -6,7 +6,7 @@ package de.parndt.timetable.tabs
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import de.parndt.timetable.timetable.daytimetable.DayTimetableFragment
+import de.parndt.timetable.timetable.daytimetable.ui.DayTimetableFragment
 import de.parndt.timetable.timetable.monthtimetable.ui.TimetableFragment
 import de.parndt.timetable.utils.Logger
 

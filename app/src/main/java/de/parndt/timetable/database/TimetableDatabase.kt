@@ -1,19 +1,15 @@
 /*
- * *
- *  * Created by Patrick Arndt on 2020
- *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09.11.20 19:39
- *
+ * Copyright (c) 2021 Patrick Arndt
  */
 
 package de.parndt.timetable.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import de.parndt.timetable.database.models.CourseEntity
-import de.parndt.timetable.database.models.LectureEntity
-import de.parndt.timetable.database.persistence.CourseDao
-import de.parndt.timetable.database.persistence.LectureDao
+import de.parndt.timetable.database.daos.CourseDao
+import de.parndt.timetable.database.daos.LectureDao
+import de.parndt.timetable.database.entities.CourseEntity
+import de.parndt.timetable.database.entities.LectureEntity
 
 
 @Database(

@@ -6,15 +6,16 @@ package de.parndt.timetable.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import de.parndt.timetable.start.init.di.InitFragmentModule
-import de.parndt.timetable.start.init.ui.InitFragment
-import de.parndt.timetable.start.simple.di.StartFragmentModule
-import de.parndt.timetable.start.simple.ui.StartFragment
-import de.parndt.timetable.timetable.daytimetable.DayTimetableFragment
-import de.parndt.timetable.timetable.daytimetable.di.DayTimetableFragmentModule
-import de.parndt.timetable.timetable.monthtimetable.di.TimetableFragmentModule
+import de.parndt.timetable.MainActivity
+import de.parndt.timetable.di.fragmentmodules.DayTimetableFragmentModule
+import de.parndt.timetable.di.fragmentmodules.InitFragmentModule
+import de.parndt.timetable.di.fragmentmodules.StartFragmentModule
+import de.parndt.timetable.di.fragmentmodules.TimetableFragmentModule
+import de.parndt.timetable.di.modules.MainActivityModule
+import de.parndt.timetable.firststart.StartFragment
+import de.parndt.timetable.init.InitFragment
+import de.parndt.timetable.timetable.daytimetable.ui.DayTimetableFragment
 import de.parndt.timetable.timetable.monthtimetable.ui.TimetableFragment
-import de.parndt.timetable.ui.MainActivity
 
 
 @Module

@@ -6,7 +6,7 @@ package de.parndt.timetable.general
 
 import android.content.SharedPreferences
 import de.parndt.timetable.BuildConfig
-import de.parndt.timetable.database.models.CourseEntity
+import de.parndt.timetable.database.entities.CourseEntity
 import de.parndt.timetable.utils.Logger
 import javax.inject.Inject
 import javax.inject.Singleton

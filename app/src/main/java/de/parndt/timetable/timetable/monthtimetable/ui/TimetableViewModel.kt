@@ -5,7 +5,7 @@
 package de.parndt.timetable.timetable.monthtimetable.ui
 
 import androidx.lifecycle.*
-import de.parndt.timetable.general.lecture.LectureDay
+import de.parndt.timetable.general.LectureDay
 import de.parndt.timetable.timetable.monthtimetable.TimetableUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

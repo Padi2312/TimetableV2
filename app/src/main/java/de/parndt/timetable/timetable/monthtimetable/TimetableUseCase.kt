@@ -4,10 +4,10 @@
 
 package de.parndt.timetable.timetable.monthtimetable
 
-import de.parndt.timetable.database.models.LectureEntity
-import de.parndt.timetable.database.repository.LectureRepository
-import de.parndt.timetable.general.lecture.LectureDay
-import de.parndt.timetable.general.loader.TimetableLoader
+import de.parndt.timetable.database.entities.LectureEntity
+import de.parndt.timetable.database.repositories.LectureRepository
+import de.parndt.timetable.general.LectureDay
+import de.parndt.timetable.general.TimetableLoader
 import java.time.LocalDate
 import java.time.ZoneId
 import javax.inject.Inject

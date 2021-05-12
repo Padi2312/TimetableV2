@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.AndroidSupportInjection
 import de.parndt.timetable.R
-import de.parndt.timetable.general.lecture.LectureDay
+import de.parndt.timetable.general.LectureDay
 import kotlinx.android.synthetic.main.fragment_timetable.*
 import javax.inject.Inject
 
