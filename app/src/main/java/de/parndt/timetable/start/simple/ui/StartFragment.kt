@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import dagger.android.support.AndroidSupportInjection
 import de.parndt.timetable.R
-import de.parndt.timetable.timetable.monthtimetable.ui.TimetableFragment
+import de.parndt.timetable.tabs.TabsFragment
 import de.parndt.timetable.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_start.*
 import javax.inject.Inject
@@ -40,9 +40,7 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         viewModel.getCourseNames().observe(viewLifecycleOwner) {
-
             adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
@@ -85,7 +83,7 @@ class StartFragment : Fragment() {
     private fun setOnClickNext() {
         startNextButton.setOnClickListener {
             if (viewModel.isCourseSet()) {
-                (requireActivity() as MainActivity).navigateToFragment(TimetableFragment())
+                (requireActivity() as MainActivity).navigateToFragment(TabsFragment())
             }
         }
     }

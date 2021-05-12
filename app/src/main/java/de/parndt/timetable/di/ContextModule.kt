@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021 Patrick Arndt
+ */
+
 package de.parndt.timetable.di
 
 import android.content.Context
@@ -11,6 +15,5 @@ class ContextModule(private var context: Context) {
     fun provideContext(): Context {
         return this.context
     }
-
 
 }
